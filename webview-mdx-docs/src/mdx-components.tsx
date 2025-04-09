@@ -8,7 +8,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     hr: (props) => (
       <hr
         {...props}
-        className="my-6 h-[2px] border-none bg-neutral-700 rounded-md"
+        className="my-2 h-[2px] border-none bg-neutral-700 rounded-md"
       />
     ),
     ...components,

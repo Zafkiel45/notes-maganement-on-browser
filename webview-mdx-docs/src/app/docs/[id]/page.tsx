@@ -11,7 +11,7 @@ export default async function DocsPage({ params }: ParamsSignature) {
   const content = new TextDecoder().decode(buffer);
 
   return (
-    <div className="prose max-w-none prose-invert">
+    <div className="prose max-w-none prose-hr:my-2 prose-hr:border-neutral-700 prose-pre:bg-neutral-800 prose-pre:border prose-pre:border-neutral-700 prose-invert">
       <MDXRemote source={content} />
     </div>
   );

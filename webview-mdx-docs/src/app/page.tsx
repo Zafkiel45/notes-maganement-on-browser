@@ -2,6 +2,8 @@ import MainPage from './@mdx-local-notes/mainPage.mdx'
 
 export default function Home() {
   return (
-    <MainPage/>
+    <div className="prose prose-invert max-w-none">
+      <MainPage/>
+    </div>
   );
 }

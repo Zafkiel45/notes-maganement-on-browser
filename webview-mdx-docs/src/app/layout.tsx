@@ -27,12 +27,12 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} flex antialiased overflow-y-hidden text-white bg-[#0F0F0F]`}
+        className={`${geistSans.variable} ${geistMono.variable} flex antialiased overflow-y-hidden text-white bg-[#0e0c0c]`}
       >
         <NavbarContainer />
-        <div className="w-full p-5 h-screen">
+        <div className="w-full px-2 h-screen">
           <HeaderContainer />
-          <div className="border p-5 border-[#5C5C5C] overflow-y-auto rounded-xl h-[90vh]">
+          <div className="border bg-[#151515] p-10 border-[#5C5C5C] overflow-y-auto rounded-xl h-[90vh]">
             {children}
           </div>
         </div>
