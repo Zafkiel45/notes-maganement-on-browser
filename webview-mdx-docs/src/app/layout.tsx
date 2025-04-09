@@ -32,7 +32,7 @@ export default function RootLayout({
         <NavbarContainer />
         <div className="w-full px-2 h-screen">
           <HeaderContainer />
-          <div className="border bg-[#151515] p-10 border-[#5C5C5C] overflow-y-auto rounded-xl h-[92vh]">
+          <div className="border bg-[#151515] p-14 border-[#5C5C5C] overflow-y-auto rounded-xl h-[92vh]">
             {children}
           </div>
         </div>
