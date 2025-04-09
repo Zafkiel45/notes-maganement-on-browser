@@ -12,7 +12,6 @@ export const NavbarContainer = () => {
         const folderFetch = await fetch("http://localhost:3001/folders");
         const folderArray = await folderFetch.json();
         setFolders(folderArray);
-        console.log(folderArray);
       } catch (err) {
         console.error(err);
       }
@@ -27,11 +26,9 @@ export const NavbarContainer = () => {
         {folders.map((item, idx) => {
           return (
             <Link key={idx + 1} href={`/types/${item}`}>
-              <li
-                className="flex items-center text-lg gap-2 hover:bg-blue-400/50 transition-colors active:bg-blue-300/50 cursor-pointer rounded-md py-1 px-2"
-              >
+              <li className="flex items-center group text-lg gap-1 hover:bg-blue-400/40 transition-colors active:bg-blue-300/40 cursor-pointer rounded-md py-1 px-2">
                 <div>
-                  <Hash />
+                  <Hash className="fill-gray-400 group-hover:fill-cyan-200 transition-colors"/>
                 </div>
                 <div>{item}</div>
               </li>
