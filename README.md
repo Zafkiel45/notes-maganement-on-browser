@@ -1,8 +1,12 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# What is? 
+
+This is the Front-end of project "webview-documents". The project allows the user to get a MDX document from your backend and show it on the browser. Simple, no? 
+The project also has a backend at [webview-mdx-docs-backend](https://github.com/Zafkiel45/webview-mdx-docs-backend). You can install both, and run your machine to the 
+full experience. 
 
 ## Getting Started
 
-First, run the development server:
+The Front-end uses Next.js as framework, and some another dependencies to convert markdown to HTML. In addition, JSX is also converted to HTML. After to install the project, run the commands below: 
 
 ```bash
 npm run dev
@@ -16,21 +20,26 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Security caveats:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project uses [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote). This package allows to get a MDX from backend, convert it correctly and renderize on the browser using Next.js.
 
-## Learn More
+The problem is: MDX allows JSX too... JSX allow the execution of JavaScript. Because of this, you must trust on the backend you will get the docs. The docs can contain malicious code. The best way to use is create your own backend and management it yourself. In addition, you should create your own MDX notes too. NEVER GETS MDX NOTES FROM SUSPECT ORIGINS. 
 
-To learn more about Next.js, take a look at the following resources:
+## Legal advices:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Warning:** This project allows the use of `.mdx` files, which combine Markdown with JSX components. Although the project provides good practice guidelines and recommended security measures, improper or negligent use may result in security flaws such as **XSS (Cross-Site Scripting) or malicious code execution.**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**The author accepts no liability for any damage, injury or loss arising from incorrect use of this software, especially in production environments.** The user is entirely responsible for **validating, sanitizing and auditing any dynamic content used through this system.**
 
-## Deploy on Vercel
+It is the user's responsibility to ensure that `.mdx` files come from reliable sources and comply with the security practices described in the documentation.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# How to use?  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Now, you have the project installed on your machine, start the backend before to start the front-end. The motivation is: The Front-end will fetch the name of folders where your mdx notes are and show it on navbar. This is as the tag of notes. 
+
+After, when you click some item of navbar, all notes related the folder's name, it will be showed. Now, it's only navegate between your notes using the project. 
+
+# The documentation 
+
+This docs still in progress. There are many thing about it, but, the first release of project `v1.0.0` is not the final version, and there is nothing instead of read your notes for now. 
