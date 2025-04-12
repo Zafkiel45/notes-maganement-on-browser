@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { NavbarContainer } from "@/components/navbar/NavbarContainer";
-import { HeaderContainer } from "@/components/header/HeaderContainer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,9 +29,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} flex antialiased overflow-y-hidden text-white bg-[#0e0c0c]`}
       >
         <NavbarContainer />
-        <div className="w-full px-2 h-screen">
-          <HeaderContainer />
-          <div className="border bg-[#151515] p-14 border-[#5C5C5C] overflow-y-auto rounded-xl h-[92vh]">
+        <div className="w-full p-2 h-screen">
+          <div className="border bg-[#151515] p-14 border-[#5C5C5C] overflow-y-auto rounded-xl h-[98vh]">
             {children}
           </div>
         </div>
