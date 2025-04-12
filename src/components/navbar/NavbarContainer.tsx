@@ -21,7 +21,7 @@ export const NavbarContainer = () => {
   }, []);
 
   return (
-    <nav className="w-[18vw] bg-[#151515] p-5 h-screen border-r border-[#5C5C5C] ">
+    <nav className="w-[18vw] bg-[#151515] p-5 h-screen overflow-y-auto border-r border-[#5C5C5C] ">
       <ul className="w-full flex flex-col gap-4">
         {folders.map((item, idx) => {
           return (
