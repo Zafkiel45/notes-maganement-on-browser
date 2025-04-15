@@ -1,6 +1,5 @@
-import Link from "next/link";
-import { FileIcon } from "../../../../public/svg/FileIcon";
-import { Hash } from "../../../../public/svg/hash";
+import { FileIcon } from "../../../svg/FileIcon";
+import { Hash } from "../../../svg/hash";
 
 interface paramsSignature {
   params: Promise<{ type: string }>;
@@ -33,14 +32,14 @@ export default async function FilesGroupedByTypes({ params }: paramsSignature) {
         <ul className="text-lg flex flex-col gap-2">
           {files.map((item) => {
             return (
-              <Link href={`/docs/${item.id}`} key={item.id}>
+              <a href={`/docs/${item.id}`} key={item.id}>
                 <li className="flex items-center gap-1 rounded-md shadow-sm py-1 px-2 hover:bg-blue-400/40 transition-colors active:bg-blue-300/40">
                   <div>
                     <FileIcon />
                   </div>
                   <div>{item.name}</div>
                 </li>
-              </Link>
+              </a>
             );
           })}
         </ul>

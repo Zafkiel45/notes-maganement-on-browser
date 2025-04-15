@@ -1,4 +1,4 @@
-import { MDXRemote } from "next-mdx-remote/rsc";
+
 
 interface ParamsSignature {
   params: Promise<{ id: string }>;
@@ -12,7 +12,7 @@ export default async function DocsPage({ params }: ParamsSignature) {
 
   return (
     <div className="prose max-w-none prose-hr:my-2 prose-hr:border-neutral-700 prose-pre:bg-neutral-800 prose-pre:border prose-pre:border-neutral-700 prose-invert">
-      <MDXRemote source={content} />
+      
     </div>
   );
 }

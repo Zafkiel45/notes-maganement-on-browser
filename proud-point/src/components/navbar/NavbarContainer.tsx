@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Hash } from "../../../public/svg/hash";
-import Link from "next/link";
+import { Hash } from "../../svg/hash";
 
 export const NavbarContainer = () => {
   const [folders, setFolders] = useState<string[]>([]);
@@ -25,14 +24,14 @@ export const NavbarContainer = () => {
       <ul className="w-full flex flex-col gap-4">
         {folders.map((item, idx) => {
           return (
-            <Link key={idx + 1} href={`/types/${item}`}>
+            <a key={idx + 1} href={`/types/${item}`}>
               <li className="flex w-full items-center group text-lg gap-1 hover:bg-blue-400/40 transition-colors active:bg-blue-300/40 cursor-pointer rounded-md py-1 px-2 truncate">
                 <div>
-                  <Hash className="fill-gray-400 group-hover:fill-cyan-200 transition-colors"/>
+                  <Hash className="fill-gray-400 group-hover:fill-cyan-200 transition-colors" />
                 </div>
                 <div>{item}</div>
               </li>
-            </Link>
+            </a>
           );
         })}
       </ul>
