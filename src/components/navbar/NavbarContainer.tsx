@@ -24,7 +24,7 @@ export const NavbarContainer = () => {
       <ul className="w-full flex flex-col gap-4">
         {folders.map((item, idx) => {
           return (
-            <a key={idx + 1} href={`/types/${item}`}>
+            <a key={idx + 1} href={`/types/${item}/filesTypes`}>
               <li className="flex w-full items-center group text-lg gap-1 hover:bg-blue-400/40 transition-colors active:bg-blue-300/40 cursor-pointer rounded-md py-1 px-2 truncate">
                 <div>
                   <Hash className="fill-gray-400 group-hover:fill-cyan-200 transition-colors" />

@@ -1,0 +1,11 @@
+---
+const { id } = Astro.params;
+
+export const prerender = false;
+const docsContent = await fetch(`http://localhost:3001/docs/${id}`);
+const buffer = await docsContent.arrayBuffer();
+const content = new TextDecoder().decode(buffer);
+---
+
+<div class="prose max-w-none prose-hr:my-2 prose-hr:border-neutral-700 prose-pre:bg-neutral-800 prose-pre:border prose-pre:border-neutral-700 prose-invert">
+</div>
