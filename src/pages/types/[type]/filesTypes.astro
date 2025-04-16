@@ -1,5 +1,5 @@
 ---
-import { FileMap } from '../../../components/navbar/fileList';
+import { FileMap } from '../../../components/fileRenderize/fileList';
 import { Hash } from "../../../svg/hash";
 import Layout from '../../../layouts/Layout.astro';
 
@@ -28,7 +28,7 @@ console.log(fileList)
     </h1>
   </div>
   <div>
-    <ul class="text-lg flex flex-col gap-2">
+    <ul class="text-lg flex flex-wrap gap-2">
       <FileMap files={fileList} />
     </ul>
   </div>
