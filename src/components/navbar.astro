@@ -2,26 +2,25 @@
 import { AddFolder } from "../svg/AddFolder";
 import { AddNote } from "../svg/AddNote";
 import { Hash } from "../svg/hash";
-import { NavbarBtn } from "./navbar/Button.navbar.tsx";
 import NavSectionDivider from "./navbar/NavSectionDivider.astro";
+import NavButton from "./navbar/NavButton.astro";
 
 const folders = await fetch("http://localhost:3001/folders");
 const folderArr = await folders.json();
 ---
 
-<nav
-  class="w-[20vw] bg-[#151515] p-5 h-screen flex flex-col gap-3 overflow-y-auto border-r border-[#5C5C5C]"
->
+<nav class="w-[20vw] bg-[#151515] p-5 h-screen flex flex-col gap-3 overflow-y-auto border-r border-[#5C5C5C]">
   <NavSectionDivider section="➕ Criar" client:load />
 
   <div class="flex flex-col lg:gap-2">
-    <NavbarBtn content="Criar nova pasta" client:load>
+    <NavButton content="Criar nova pasta" client:load>
       <AddFolder />
-    </NavbarBtn>
-    <NavbarBtn content="Criar nova nota" client:load>
+    </NavButton>
+    <NavButton content="Criar nova nota" client:load>
       <AddNote />
-    </NavbarBtn>
+    </NavButton>
   </div>
+
   <NavSectionDivider section="📂  Criar" client:load />
   <ul class="w-full flex flex-col gap-4">
     {
