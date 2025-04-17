@@ -1,5 +1,43 @@
 ---
-import { NavbarContainer } from "./navbar/NavbarContainer";
+import { AddFolder } from "../svg/AddFolder";
+import { AddNote } from "../svg/AddNote";
+import { Hash } from "../svg/hash";
+import { NavbarBtn } from "./navbar/Button.navbar.tsx";
+import { SectionDivider } from "./navbar/SectionDivider.navbar.tsx";
+
+const folders = await fetch("http://localhost:3001/folders");
+const folderArr = await folders.json();
 ---
 
-<NavbarContainer client:load/>
+<nav
+  class="w-[20vw] bg-[#151515] p-5 h-screen flex flex-col gap-3 overflow-y-auto border-r border-[#5C5C5C]"
+>
+  {(<SectionDivider sectionName="➕ Criar" client:load />)}
+
+  <div class="flex flex-col lg:gap-2">
+    <NavbarBtn content="Criar nova pasta" client:load>
+      <AddFolder />
+    </NavbarBtn>
+    <NavbarBtn content="Criar nova nota" client:load>
+      <AddNote />
+    </NavbarBtn>
+  </div>
+
+  {(<SectionDivider sectionName="📂 Pastas" client:load />)}
+  <ul class="w-full flex flex-col gap-4">
+    {
+      folderArr.map((item: string) => {
+        return (
+          <a href={`/types/${item}/filesTypes`}>
+            <li class="flex w-full items-center group text-lg gap-1 hover:bg-blue-400/40 transition-colors active:bg-blue-300/40 cursor-pointer rounded-md py-1 px-2 truncate">
+              <div>
+                <Hash className="fill-gray-400 group-hover:fill-cyan-200 transition-colors" />
+              </div>
+              <div>{item}</div>
+            </li>
+          </a>
+        );
+      })
+    }
+  </ul>
+</nav>
