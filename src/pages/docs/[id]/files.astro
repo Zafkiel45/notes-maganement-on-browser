@@ -1,6 +1,6 @@
 ---
-import { ParseFileContent } from '../../../components/fileRenderize/FileMarkdownContent';
-import Layout from '../../../layouts/Layout.astro';
+import { ParseFileContent } from "../../../components/fileRenderize/FileMarkdownContent";
+import Layout from "../../../layouts/Layout.astro";
 
 const { id } = Astro.params;
 
@@ -11,7 +11,38 @@ const content = new TextDecoder().decode(buffer);
 ---
 
 <Layout>
-    <div class="prose max-w-none prose-hr:my-2 prose-hr:border-neutral-700 prose-pre:bg-neutral-800 prose-pre:border prose-pre:border-neutral-700 prose-invert">
-        <ParseFileContent  markdown={content}/>
-    </div>
+  <div
+    class="prose max-w-none prose-hr:my-2 prose-hr:border-neutral-700 prose-pre:bg-neutral-800 prose-pre:border prose-pre:border-neutral-700 prose-invert"
+  >
+    <ParseFileContent markdown={content} />
+  </div>
 </Layout>
+
+<script>
+  import { codeToHtml } from "shiki";
+
+  window.onload = async () => {
+    const preElements = document.querySelectorAll("pre");
+
+    if (preElements.length === 0) return;
+
+    for (let preElement of preElements) {
+      const language: string | null = preElement.getAttribute("data-language");
+      const rawCode: string | null = preElement.textContent;
+
+      if (!language || !rawCode) {
+        continue;
+      }
+
+      const parsedCode = await codeToHtml(rawCode, {
+        lang: language,
+        theme: "dracula",
+      });
+
+      const wrapper = document.createElement("div");
+      wrapper.innerHTML = parsedCode;
+
+      preElement.replaceWith(...wrapper.childNodes);
+    }
+  };
+</script>
