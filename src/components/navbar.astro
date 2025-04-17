@@ -1,7 +1,7 @@
 ---
 import { AddFolder } from "../svg/AddFolder";
 import { AddNote } from "../svg/AddNote";
-import { Hash } from "../svg/hash";
+import NavFolders from "./navbar/NavFolders.astro";
 import NavSectionDivider from "./navbar/NavSectionDivider.astro";
 import NavButton from "./navbar/NavButton.astro";
 
@@ -23,19 +23,6 @@ const folderArr = await folders.json();
 
   <NavSectionDivider section="📂  Criar" client:load />
   <ul class="w-full flex flex-col gap-4">
-    {
-      folderArr.map((item: string) => {
-        return (
-          <a href={`/types/${item}/filesTypes`}>
-            <li class="flex w-full items-center group text-lg gap-1 hover:bg-blue-400/40 transition-colors active:bg-blue-300/40 cursor-pointer rounded-md py-1 px-2 truncate">
-              <div>
-                <Hash className="fill-gray-400 group-hover:fill-cyan-200 transition-colors" />
-              </div>
-              <div>{item}</div>
-            </li>
-          </a>
-        );
-      })
-    }
+    <NavFolders folders={folderArr} />
   </ul>
 </nav>

@@ -1,0 +1,24 @@
+---
+import { Hash } from "../../svg/hash";
+
+interface Props {
+  folders: string[];
+}
+
+const { folders } = Astro.props;
+---
+
+{
+  folders.map((folder: string) => {
+    return (
+      <a href={`/types/${folder}/filesTypes`}>
+        <li class="flex w-full items-center group text-lg gap-1 hover:bg-blue-400/40 transition-colors active:bg-blue-300/40 cursor-pointer rounded-md py-1 px-2 truncate">
+          <div>
+            <Hash className="fill-gray-400 group-hover:fill-cyan-200 transition-colors" />
+          </div>
+          <div>{folder}</div>
+        </li>
+      </a>
+    );
+  })
+}
