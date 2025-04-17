@@ -1,0 +1,8 @@
+---
+interface Props {
+    section: string;
+};
+// Astro automatically associate the Props to variables of Astro.props.
+const { section } = Astro.props;
+---
+<div class="font-medium text-lg">{section}</div>
