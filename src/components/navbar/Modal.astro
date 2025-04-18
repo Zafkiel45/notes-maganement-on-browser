@@ -1,4 +1,6 @@
 ---
+import { Close } from '../../svg/Close';
+
 interface Props {
   folders: string[];
 }
@@ -15,7 +17,9 @@ const { folders } = Astro.props;
     <div class="flex items-center justify-between">
       <h1 class="lg:text-xl font-semibold">Criar nota</h1>
       <div>
-        <button id="closeModal">X</button>
+        <button id="closeModal">
+          <Close/>
+        </button>
       </div>
     </div>
     <div class="flex flex-col gap-2">
