@@ -1,11 +1,13 @@
 ---
-interface Props {
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<'label'> {
     target: string;
 };
 
-const { target } = Astro.props;
+const { target, ...attr } = Astro.props;
 ---
 
-<label class="" for={target}>
+<label {...attr} for={target}>
     <slot/>
 </label>

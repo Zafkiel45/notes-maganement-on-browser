@@ -57,8 +57,8 @@ const { folders } = Astro.props;
           <MandatoryAdvice content='Escolha uma pasta' />
         </Label>
       </div>
-      <div id="folderTarget" class="h-40">
-        <ul class="flex gap-3 flex-wrap justify-start w-full overflow-y-auto">
+      <div id="folderTarget" class="h-32">
+        <ul class="flex gap-3 h-full flex-wrap justify-start w-full overflow-y-auto">
           {
             folders.map((folder) => {
               return (
@@ -70,12 +70,12 @@ const { folders } = Astro.props;
                     value={folder}
                     class="hidden peer"
                   />
-                  <label
-                    for={folder}
-                    class="peer-checked:bg-blue-400 rounded-md px-2"
+                  <Label 
+                    target={folder}
+                    class="peer-checked:text-blue-400 rounded-md"
                   >
                     📂 {folder}
-                  </label>
+                  </Label>
                 </li>
               );
             })
