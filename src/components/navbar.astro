@@ -1,28 +1,28 @@
 ---
 import { AddFolder } from "../svg/AddFolder";
 import { AddNote } from "../svg/AddNote";
-import NavFolders from "./navbar/NavFolders.astro";
-import NavSectionDivider from "./navbar/NavSectionDivider.astro";
-import NavButton from "./navbar/NavButton.astro";
-import Modal from "./navbar/Modal.astro";
+import NavFolders from "./nav/NavFolders.astro";
+import NavSection from "./nav/NavSection.astro";
+import NavButton from "./nav/NavButton.astro";
+import Modal from "./nav/Modal.astro";
 
 const folders = await fetch("http://localhost:3001/folders");
 const folderArr = await folders.json();
 ---
 
 <nav class="w-[20vw] bg-[#151515] p-5 h-screen flex flex-col gap-3 overflow-y-auto border-r border-[#5C5C5C]">
-  <NavSectionDivider section="➕ Criar" client:load />
+  <NavSection section="➕ Criar"/>
 
   <div class="flex flex-col lg:gap-2">
-    <NavButton id="" content="Criar nova pasta" client:load>
+    <NavButton id="" content="Criar nova pasta" >
       <AddFolder />
     </NavButton>
-    <NavButton id="openModal" content="Criar nova nota" client:load>
+    <NavButton id="openModal" content="Criar nova nota">
       <AddNote />
     </NavButton>
   </div>
 
-  <NavSectionDivider section="📂  Criar" client:load />
+  <NavSection section="📂  Criar" />
   <ul class="w-full flex flex-col gap-4">
     <NavFolders folders={folderArr} />
   </ul>

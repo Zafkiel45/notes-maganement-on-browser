@@ -13,10 +13,6 @@ export default defineConfig({
   integrations: [react(), markdoc()],
   vite: {plugins: [tailwindcss()]},
   
-  experimental: {
-    session: true, // Evita o erro de runtime
-  },
-
   adapter: node({
     mode: 'standalone'
   })
