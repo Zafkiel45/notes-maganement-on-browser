@@ -2,6 +2,7 @@
 import { Close } from '../../svg/Close';
 import Label from '../../components/generic/Label.astro';
 import MandatoryAdvice from '../generic/MandatoryAdvice.astro';
+import { Plus } from '../../svg/Plus'
 
 interface Props {
   folders: string[];
@@ -83,9 +84,10 @@ const { folders } = Astro.props;
         </ul>
       </div>
     </div>
-    <div>
-        <button id="createNote" class="bg-green-400 rounded-md shadow-sm px-2 py-1">
-            Criar
+    <div class="w-24">
+        <button id="createNote" class="bg-green-600 rounded-md w-full shadow-sm px-2 py-1 flex gap-2 justify-start">
+            <div><Plus/></div>
+            <div>Criar</div>
         </button>
     </div>
   </div>

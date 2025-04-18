@@ -4,7 +4,7 @@ import { AddNote } from "../svg/AddNote";
 import NavFolders from "./navbar/NavFolders.astro";
 import NavSectionDivider from "./navbar/NavSectionDivider.astro";
 import NavButton from "./navbar/NavButton.astro";
-import Modal from "./navbar/modal.astro";
+import Modal from "./navbar/Modal.astro";
 
 const folders = await fetch("http://localhost:3001/folders");
 const folderArr = await folders.json();
