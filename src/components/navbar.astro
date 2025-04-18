@@ -4,6 +4,7 @@ import { AddNote } from "../svg/AddNote";
 import NavFolders from "./navbar/NavFolders.astro";
 import NavSectionDivider from "./navbar/NavSectionDivider.astro";
 import NavButton from "./navbar/NavButton.astro";
+import Modal from "./navbar/modal.astro";
 
 const folders = await fetch("http://localhost:3001/folders");
 const folderArr = await folders.json();
@@ -13,10 +14,10 @@ const folderArr = await folders.json();
   <NavSectionDivider section="➕ Criar" client:load />
 
   <div class="flex flex-col lg:gap-2">
-    <NavButton content="Criar nova pasta" client:load>
+    <NavButton id="" content="Criar nova pasta" client:load>
       <AddFolder />
     </NavButton>
-    <NavButton content="Criar nova nota" client:load>
+    <NavButton id="openModal" content="Criar nova nota" client:load>
       <AddNote />
     </NavButton>
   </div>
@@ -25,4 +26,17 @@ const folderArr = await folders.json();
   <ul class="w-full flex flex-col gap-4">
     <NavFolders folders={folderArr} />
   </ul>
+
+  <Modal folders={folderArr}/>
 </nav>
+
+<script>
+  const closeModalBtn = document.querySelector('#openModal') as HTMLButtonElement;
+  const modal = document.querySelector('#modal') as HTMLDivElement;
+
+  closeModalBtn.addEventListener('click', () => {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+  });
+
+</script>

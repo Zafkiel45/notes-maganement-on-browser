@@ -1,0 +1,114 @@
+---
+interface Props {
+  folders: string[];
+}
+const { folders } = Astro.props;
+---
+
+<div
+  id="modal"
+  class={`bg-black/50 w-screen h-screen hidden top-0 left-0 absolute justify-center items-center`}
+>
+  <div
+    class="bg-slate-700 lg:w-[70vw] border border-slate-500 rounded-md shadow-md flex flex-col gap-3 px-5 py-3"
+  >
+    <div class="flex items-center justify-between">
+      <h1 class="lg:text-xl font-semibold">Criar nota</h1>
+      <div>
+        <button id="closeModal">X</button>
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <div>
+        <label for="noteName">Nome da Nota (Separador por traços (-))</label>
+      </div>
+      <input
+        type="text"
+        name=""
+        id="noteName"
+        class="border border-slate-500 rounded-md outline-none w-full px-2 py-1"
+      />
+    </div>
+    <div class="flex flex-col gap-2">
+      <div>
+        <label for="noteEditor">Editor de notas (suporta apenas Markdown)</label
+        >
+      </div>
+      <textarea
+        id="noteEditor"
+        contenteditable=""
+        class="border border-slate-500 rounded-md outline-none w-full h-32 overflow-x-hidden break-all whitespace-pre-wrap break-words"
+      />
+    </div>
+    <div class="flex flex-col gap-3 p-2">
+      <div>
+        <label for="folderTarget">Escolha uma pasta (obrigatório)</label>
+      </div>
+      <div id="folderTarget" class="h-40">
+        <ul class="flex gap-3 flex-wrap justify-start w-full overflow-y-auto">
+          {
+            folders.map((folder) => {
+              return (
+                <li class="h-fit">
+                  <input
+                    type="radio"
+                    name="folder"
+                    id={folder}
+                    value={folder}
+                    class="hidden peer"
+                  />
+                  <label
+                    for={folder}
+                    class="peer-checked:bg-blue-400 rounded-md px-2"
+                  >
+                    📂 {folder}
+                  </label>
+                </li>
+              );
+            })
+          }
+        </ul>
+      </div>
+    </div>
+    <div>
+        <button id="createNote" class="bg-green-400 rounded-md shadow-sm px-2 py-1">
+            Criar
+        </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const closeModalBtn = document.querySelector(
+    "#closeModal"
+  ) as HTMLButtonElement;
+  const modal = document.querySelector("#modal") as HTMLDivElement;
+  const createNoteBtn = document.querySelector("#createNote") as HTMLButtonElement;
+  
+  closeModalBtn.addEventListener("click", () => {
+    modal.classList.remove("flex");
+    modal.classList.add("hidden");
+  });
+
+  createNoteBtn.addEventListener('click', async () => {
+    const noteName = (document.querySelector('#noteName') as HTMLInputElement).value
+    const selectedFolder = (document.querySelector('input[name="folder"]:checked') as HTMLInputElement).value; 
+    const noteContent = (document.querySelector('#noteEditor') as HTMLTextAreaElement).value;
+    
+    await fetch('http://localhost:3001/createnote', {
+        method: 'POST',
+        mode: 'cors',
+        body: JSON.stringify({
+            name: noteName,
+            content: noteContent,
+            type: selectedFolder,
+        }),
+        headers: {
+            "Content-Type": 'application/json',
+        }
+    }).then((res) => {
+      console.log(res.status);
+      console.log(res.statusText);
+    })
+  });
+</script>
