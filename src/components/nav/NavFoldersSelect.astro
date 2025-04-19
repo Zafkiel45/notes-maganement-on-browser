@@ -1,0 +1,31 @@
+---
+import Label from '../atoms/Label.astro';
+
+interface Props {
+    folderArr: string[];
+};
+
+const { folderArr } = Astro.props;
+---
+
+<ul class="flex gap-3 h-full flex-wrap justify-start w-full overflow-y-auto">
+    {folderArr.map((folder: string) => {
+        return (
+          <li class="h-fit">
+            <input
+              type="radio"
+              name="folder"
+              id={folder}
+              value={folder}
+              class="hidden peer"
+            />
+            <Label 
+              target={folder}
+              class="peer-checked:text-blue-400 rounded-md"
+            >
+              📂 {folder}
+            </Label>
+          </li>
+        );
+    })}
+</ul>
