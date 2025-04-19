@@ -5,6 +5,10 @@ import NavFolders from "./nav/NavFolders.astro";
 import NavSection from "./nav/NavSection.astro";
 import NavButton from "./nav/NavButton.astro";
 import Modal from "./nav/Modal.astro";
+import { Close } from "../svg/Close";
+import { Plus } from "../svg/Plus";
+import Label from "./generic/Label.astro";
+import MandatoryAdvice from "./generic/MandatoryAdvice.astro";
 
 const folders = await fetch("http://localhost:3001/folders");
 const folderArr = await folders.json();
@@ -27,7 +31,81 @@ const folderArr = await folders.json();
     <NavFolders folders={folderArr} />
   </ul>
 
-  <Modal folders={folderArr}/>
+  <Modal>
+    <div class="flex items-center justify-between">
+      <h1 class="lg:text-xl font-semibold">Criar nota</h1>
+      <div>
+        <button id="closeModal">
+          <Close/>
+        </button>
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <div>
+        <Label target='noteName'>
+          <MandatoryAdvice content='Nome da nota'/> 
+        </Label>
+      </div>
+      <input
+        type="text"
+        name=""
+        id="noteName"
+        placeholder="digite-o-nome-de-sua-nota"
+        class="border border-slate-500 rounded-md outline-none w-full p-3"
+      />
+    </div>
+    <div class="flex flex-col gap-2">
+      <div>
+        <Label target='noteEditor'>
+          <MandatoryAdvice content='Editor de notas (apenas Markdown)'/> 
+        </Label>
+      </div>
+      <textarea
+        id="noteEditor"
+        contenteditable=""
+        placeholder="# Digite sua nota no formato markdown!"
+        class="border border-slate-500 rounded-md outline-none w-full h-32 overflow-x-hidden break-all whitespace-pre-wrap break-words p-3"
+      />
+    </div>
+    <div class="flex flex-col gap-3 p-2">
+      <div>
+        <Label target='folderTarget'>
+          <MandatoryAdvice content='Escolha uma pasta' />
+        </Label>
+      </div>
+      <div id="folderTarget" class="h-32">
+        <ul class="flex gap-3 h-full flex-wrap justify-start w-full overflow-y-auto">
+          {
+            folderArr.map((folder: string) => {
+              return (
+                <li class="h-fit">
+                  <input
+                    type="radio"
+                    name="folder"
+                    id={folder}
+                    value={folder}
+                    class="hidden peer"
+                  />
+                  <Label 
+                    target={folder}
+                    class="peer-checked:text-blue-400 rounded-md"
+                  >
+                    📂 {folder}
+                  </Label>
+                </li>
+              );
+            })
+          }
+        </ul>
+      </div>
+    </div>
+    <div class="w-24">
+        <button id="createNote" class="bg-green-600 rounded-md w-full shadow-sm px-2 py-1 flex gap-2 justify-start">
+            <div><Plus/></div>
+            <div>Criar</div>
+        </button>
+    </div>
+  </Modal>
 </nav>
 
 <script>

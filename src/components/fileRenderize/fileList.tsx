@@ -6,9 +6,9 @@ import { FileIcon } from "../../svg/FileIcon";
 export function FileMap({ files }: { files: FileList[] }) {
   return (
     <>
-      {files.map((item) => {
+      {files.map((item, idx) => {
         return (
-          <li className="flex flex-col shrink justify-around gap-3 lg:h-40 lg:w-[30%] rounded-lg border border-[#5C5C5C] shadow-sm py-1 px-4 bg-[#1B1B1B]">
+          <li key={idx + 1} className="flex flex-col z-0 shrink justify-around gap-3 lg:h-40 lg:w-[30%] rounded-lg border border-[#5C5C5C] shadow-sm py-1 px-4 bg-[#1B1B1B]">
             <div className="rounded-full relative shadow-md top-3 bg-[#2D2D2D] border border-[#5C5C5C] lg:h-10 lg:w-10 flex items-center justify-center">
               <FileIcon className="w-full" />
             </div>
