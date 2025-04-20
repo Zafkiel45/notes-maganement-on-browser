@@ -13,3 +13,19 @@
 ::-webkit-scrollbar-track {
   background-color: transparent;
 }
+
+p > code {
+  background-color: rgb(47, 47, 47);
+  border: 1px solid rgb(66, 65, 65);
+  border-radius: 5px;
+  color: rgb(241, 77, 77);
+  padding: 0 0.31em;
+
+  &::before {
+    content: '';
+  }
+
+  &::after {
+    content: '';
+  }
+}
