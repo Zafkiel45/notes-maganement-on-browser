@@ -16,7 +16,7 @@
 
 p > code {
   background-color: rgb(47, 47, 47);
-  border: 1px solid rgb(66, 65, 65);
+  border: 1px solid rgb(47, 47, 47);
   border-radius: 5px;
   color: rgb(241, 77, 77);
   padding: 0 0.31em;
@@ -28,4 +28,24 @@ p > code {
   &::after {
     content: '';
   }
+}
+
+table {
+  border: 1px solid rgb(84, 84, 84);
+  border-radius: 1.25em;
+  border-collapse: separate;
+  overflow: hidden;
+  border-spacing: 0;
+}
+
+tr:nth-child(2) {
+  background-color: rgb(47, 47, 47);
+}
+td, th {
+  padding: 0.62em; /* 10px */
+}
+
+th {
+  background-color: rgb(47, 47, 47);
+  border-bottom: 1px solid rgb(84, 84, 84);
 }
