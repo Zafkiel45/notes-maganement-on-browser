@@ -19,7 +19,7 @@ const folders = await fetch("http://localhost:3001/folders");
 const folderArr = await folders.json();
 ---
 
-<nav class="w-[20vw] bg-[#151515] p-5 h-screen flex flex-col gap-3 overflow-y-auto border-r border-[#5C5C5C]">
+<nav class="lg:w-[25vw] lg:gap-5 bg-[#151515] p-5 h-screen flex flex-col overflow-y-auto border-r border-[#5C5C5C]">
   <NavSection section="➕ Criar"/>
 
   <div class="flex flex-col lg:gap-2">
@@ -32,7 +32,7 @@ const folderArr = await folders.json();
   </div>
 
   <NavSection section="📂  Criar" />
-  <ul class="w-full flex flex-col gap-4">
+  <ul class="w-full flex flex-col gap-3">
     <NavFolders folders={folderArr} />
   </ul>
 
