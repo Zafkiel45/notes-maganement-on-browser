@@ -1,6 +1,12 @@
 ---
+import type { HTMLAttributes } from 'astro/types';
 import { Close } from '../../svg/Close';
+
+interface Props extends HTMLAttributes<'button'> {}
+const { ...attr } = Astro.props;
 ---
-<button id="closeModal" class="cursor-pointer">
-    <Close/>
-</button>
+<div>
+    <button { ...attr } class="cursor-pointer">
+        <Close/>
+    </button>
+</div>

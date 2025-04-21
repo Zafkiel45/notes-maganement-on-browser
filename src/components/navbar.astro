@@ -23,7 +23,7 @@ const folderArr = await folders.json();
   <NavSection section="➕ Criar"/>
 
   <div class="flex flex-col lg:gap-2">
-    <NavButton id="" content="Criar nova pasta" >
+    <NavButton id="openFolderModal" content="Criar nova pasta" >
       <AddFolder />
     </NavButton>
     <NavButton id="openModal" content="Criar nova nota">
@@ -36,12 +36,10 @@ const folderArr = await folders.json();
     <NavFolders folders={folderArr} />
   </ul>
 
-  <Modal>
+  <Modal id="modal">
     <div class="flex items-center justify-between">
       <ModalTitle content="Criar Nota" />
-      <div>
-        <ButtonCloseModal/>
-      </div>
+      <ButtonCloseModal id="closeModal"/>
     </div>
     <div class="flex flex-col gap-2">
       <div>
@@ -85,6 +83,31 @@ const folderArr = await folders.json();
       >
         <Plus/>
       </ButtonWithSvg>
+    </div>
+  </Modal>
+  <Modal id="folderModal">
+    <!-- Maybe, there is a possibility to extract this into component -->
+    <div class="flex items-center justify-between">
+      <ModalTitle content="Criar Nova Pasta" />
+      <ButtonCloseModal id="closeFolderModal"/>
+    </div>
+    <div>
+      <input 
+        type="text" 
+        name="" 
+        id="folderNameInput"
+        placeholder="Digite o nome da nova pasta"
+        class="border border-slate-500 rounded-md outline-none w-full p-3"
+      >
+    </div>
+    <div class="w-24">
+      <ButtonWithSvg 
+        content="Criar" 
+        id="createFolderBtn" 
+        class="bg-green-600 rounded-md w-full shadow-sm px-2 py-1 flex gap-2 justify-start cursor-pointer"
+      >
+      <Plus/>
+    </ButtonWithSvg>
     </div>
   </Modal>
 </nav>
