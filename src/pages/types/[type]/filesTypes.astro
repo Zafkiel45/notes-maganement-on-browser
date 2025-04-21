@@ -10,10 +10,9 @@ export interface FileList {
 }
 
 const { type } = Astro.params;
-console.log(type)
+
 const files = await fetch(`http://localhost:3001/types/${type}`);
 const fileList: FileList[] = (await files.json()) as FileList[];
-console.log(fileList)
 ---
 
 <Layout>
