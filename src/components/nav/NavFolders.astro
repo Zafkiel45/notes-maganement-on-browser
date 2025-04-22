@@ -1,22 +1,24 @@
 ---
 import { Hash } from "../../svg/hash";
 
+export type folderObject = {name: string, folder_id: number}
+
 interface Props {
-  folders: string[];
+  folders: folderObject[];
 }
 
 const { folders } = Astro.props;
 ---
 
 {
-  folders.map((folder: string) => {
+  folders.map((folder: folderObject) => {
     return (
-      <a href={`/types/${folder}/filesTypes`}>
+      <a href={`/folders/${folder.folder_id}/filesTypes`}>
         <li class="flex w-full items-center group gap-1 hover:bg-blue-400/40 transition-colors active:bg-blue-300/40 cursor-pointer rounded-md py-1 px-2 truncate">
           <div>
             <Hash className="fill-gray-400 group-hover:fill-cyan-200 transition-colors" />
           </div>
-          <div>{folder}</div>
+          <div>{folder.name}</div>
         </li>
       </a>
     );

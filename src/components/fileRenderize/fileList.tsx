@@ -1,4 +1,4 @@
-import type { FileList } from "../../pages/types/[type]/filesTypes.astro";
+import type { FileList } from "../../pages/folders/[folder]/filesTypes.astro";
 import { DeleteNote } from "../../svg/DeleteFile.svg";
 import { EditNote } from "../../svg/EditNote.svg";
 import { FileIcon } from "../../svg/FileIcon";

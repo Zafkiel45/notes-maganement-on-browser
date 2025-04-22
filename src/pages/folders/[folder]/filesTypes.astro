@@ -9,9 +9,10 @@ export interface FileList {
   id: number;
 }
 
-const { type } = Astro.params;
+const { folder } = Astro.params;
 
-const files = await fetch(`http://localhost:3001/types/${type}`);
+const files = await fetch(`http://localhost:3001/note/${folder}`);
+console.log(files)
 const fileList: FileList[] = (await files.json()) as FileList[];
 ---
 
@@ -22,7 +23,7 @@ const fileList: FileList[] = (await files.json()) as FileList[];
         <Hash className="h-10 w-10" />
       </div>
       <div>
-        Todas as notas de {type}
+        Todas as notas de {folder}
       </div>
     </h1>
   </div>

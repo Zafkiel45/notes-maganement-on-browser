@@ -50,7 +50,7 @@ const createFolder = async () => {
             return; 
         };
 
-        await fetch('http://localhost:3001/createfolder', {
+        await fetch('http://localhost:3001/folders', {
             method: 'POST',
             mode: 'cors',
             headers: {

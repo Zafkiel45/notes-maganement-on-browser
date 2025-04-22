@@ -1,29 +1,30 @@
 ---
 import Label from '../atoms/Label.astro';
+import type { folderObject } from './NavFolders.astro';
 
 interface Props {
-    folderArr: string[];
+    folderArr: folderObject[];
 };
 
 const { folderArr } = Astro.props;
 ---
 
 <ul class="flex gap-3 h-full flex-wrap justify-start w-full overflow-y-auto">
-    {folderArr.map((folder: string) => {
+    {folderArr.map((folder: folderObject) => {
         return (
           <li class="h-fit">
             <input
               type="radio"
               name="folder"
-              id={folder}
-              value={folder}
+              id={folder.name}
+              value={String(folder.folder_id)}
               class="hidden peer"
             />
             <Label 
-              target={folder}
+              target={folder.name}
               class="peer-checked:text-blue-400 rounded-md"
             >
-              📂 {folder}
+              📂 {folder.name}
             </Label>
           </li>
         );

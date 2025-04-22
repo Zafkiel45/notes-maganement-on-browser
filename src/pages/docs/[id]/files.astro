@@ -5,7 +5,7 @@ import Layout from "../../../layouts/Layout.astro";
 const { id } = Astro.params;
 
 export const prerender = false;
-const docsContent = await fetch(`http://localhost:3001/docs/${id}`);
+const docsContent = await fetch(`http://localhost:3001/note/notes/${id}`);
 const buffer = await docsContent.arrayBuffer();
 const content = new TextDecoder().decode(buffer);
 ---

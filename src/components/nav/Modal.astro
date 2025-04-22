@@ -29,13 +29,13 @@ const { ...attr } = Astro.props;
     const selectedFolder = (document.querySelector('input[name="folder"]:checked') as HTMLInputElement).value; 
     const noteContent = (document.querySelector('#noteEditor') as HTMLTextAreaElement).value;
     
-    await fetch('http://localhost:3001/createnote', {
+    await fetch('http://localhost:3001/note', {
         method: 'POST',
         mode: 'cors',
         body: JSON.stringify({
             name: noteName,
             content: noteContent,
-            type: selectedFolder,
+            folder: selectedFolder,
         }),
         headers: {
             "Content-Type": 'application/json',
