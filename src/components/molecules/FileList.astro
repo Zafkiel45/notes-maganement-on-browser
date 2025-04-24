@@ -3,7 +3,6 @@ import type { FileList } from "../../pages/folders/[folder]/filesTypes.astro";
 import { DeleteNote } from "../../svg/DeleteFile.svg";
 import { EditNote } from "../../svg/EditNote.svg";
 import { FileIcon } from "../../svg/FileIcon";
-import { editNote } from "../../scripts/editNoteModal";
 
 interface Props {
   files: FileList[];
@@ -28,14 +27,11 @@ const { files } = Astro.props;
 
         <div class="flex items-center gap-2 self-end align-bottom">
           <div>
-            <EditNote
-              data-id={item.id}
-              className="cursor-pointer edit-note"
-            />
+            <EditNote data-id={item.id} className="cursor-pointer edit-note"/>
           </div>
 
           <div>
-            <DeleteNote className="fill-red-400 cursor-pointer" />
+            <DeleteNote data-id={item.id} className="fill-red-400 cursor-pointer delete-note" />
           </div>
         </div>
       </li>
