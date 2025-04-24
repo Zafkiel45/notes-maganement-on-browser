@@ -3,6 +3,8 @@ const inputEditor = document.querySelector('#editInput') as HTMLTextAreaElement;
 const confirmBtn = document.querySelector('#editConfirm') as HTMLButtonElement;
 const closeBtn = document.querySelector('#editClose') as HTMLButtonElement;
 const editNoteBtn = document.querySelectorAll('.edit-note');
+const deleteBtns = document.querySelectorAll('.delete-note');
+
 let noteId: number; 
 
 window.onload = () => {
@@ -17,9 +19,24 @@ window.onload = () => {
             editNote(Number(id));
         });
     });
+
+    deleteBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-id');
+            if(typeof id !== 'string') return;
+            deleteNote(id);
+        });
+    });
 };
 
-export async function editNote(id: number) {
+async function deleteNote(id: string) {
+    await fetch(`http://localhost:3001/note/notes/${id}`, {
+        method: 'DELETE',
+        mode: 'cors',
+    });
+};
+
+async function editNote(id: number) {
     toggleModal(true);
     console.log('CHAMADO')
     noteId = id;
