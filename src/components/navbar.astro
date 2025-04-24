@@ -11,7 +11,7 @@ import NavFoldersSelect from "./nav/NavFoldersSelect.astro";
 import Label from "./atoms/Label.astro";
 import MandatoryAdvice from "./atoms/MandatoryAdvice.astro";
 import ButtonWithSvg from "./atoms/ButtonWithSvg.astro";
-import ModalTitle from "./atoms/ModalTitle.astro";
+import ModalHeader from "./molecules/ModalHeader.astro";
 import ButtonCloseModal from "./molecules/ButtonCloseModal.astro";
 import TextEditor from './atoms/TextEditor.astro';
 
@@ -37,10 +37,7 @@ const folderArr = await folders.json();
   </ul>
 
   <Modal id="modal">
-    <div class="flex items-center justify-between">
-      <ModalTitle content="Criar Nota" />
-      <ButtonCloseModal id="closeModal"/>
-    </div>
+    <ModalHeader btnId="closeModal" title="Criar Nota" />
     <div class="flex flex-col gap-2">
       <div>
         <Label target='noteName'>
@@ -62,7 +59,7 @@ const folderArr = await folders.json();
         </Label>
       </div>
       <div>
-        <TextEditor/>
+        <TextEditor id="noteEditor"/>
       </div>
     </div>
     <div class="flex flex-col gap-3 p-2">
@@ -86,11 +83,7 @@ const folderArr = await folders.json();
     </div>
   </Modal>
   <Modal id="folderModal">
-    <!-- Maybe, there is a possibility to extract this into component -->
-    <div class="flex items-center justify-between">
-      <ModalTitle content="Criar Nova Pasta" />
-      <ButtonCloseModal id="closeFolderModal"/>
-    </div>
+    <ModalHeader btnId="closeFolderModal" title="Criar Pasta" />
     <div>
       <input 
         type="text" 

@@ -1,0 +1,16 @@
+---
+import ButtonCloseModal from "./ButtonCloseModal.astro";
+import Title from "../atoms/Title.astro";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<'div'>{
+    title: string; 
+    btnId: string; 
+};
+
+const { btnId, title } = Astro.props;
+---
+<div class="flex items-center justify-between">
+    <Title content={title} />
+    <ButtonCloseModal id={btnId}/>
+</div>
