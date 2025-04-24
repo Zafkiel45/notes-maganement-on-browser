@@ -1,7 +1,12 @@
 ---
-import { FileMap } from '../../../components/fileRenderize/fileList';
+import FileList from "../../../components/molecules/FileList.astro";
 import { Hash } from "../../../svg/hash";
 import Layout from '../../../layouts/Layout.astro';
+import TextEditor from "../../../components/atoms/TextEditor.astro";
+import ButtonConfirm from "../../../components/molecules/ButtonConfirm.astro";
+import ModalHeader from "../../../components/molecules/ModalHeader.astro";
+import Modal from "../../../components/nav/Modal.astro";
+import Label from "../../../components/atoms/Label.astro";
 
 export const prerender = false;
 export interface FileList {
@@ -29,7 +34,17 @@ const fileList: FileList[] = (await files.json()) as FileList[];
   </div>
   <div>
     <ul class="text-lg flex flex-wrap gap-2">
-      <FileMap files={fileList} />
+      <FileList files={fileList} />
     </ul>
   </div>
+  <Modal id='editModal'>
+    <ModalHeader btnId="editClose" title="Editar Nota" />
+    <Label target="editInput">
+      Editor
+    </Label>
+    <TextEditor id="editInput" />
+    <ButtonConfirm id='editConfirm' />
+  </Modal>
 </Layout>
+
+<script src="../../../scripts/editNoteModal.ts" ></script>
