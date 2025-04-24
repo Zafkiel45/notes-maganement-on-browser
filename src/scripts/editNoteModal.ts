@@ -31,7 +31,18 @@ export async function editNote(id: number) {
 };
 
 confirmBtn.addEventListener('click', async () => {
-    await fetch(`http://localhost:3001/note/notes/${noteId}`);
+    try {
+        await fetch(`http://localhost:3001/note/update`, {
+            method: 'PUT',
+            mode: 'cors',
+            headers: {
+                "Content-Type": 'application/json',
+            },
+            body: JSON.stringify({id: noteId, content: inputEditor.value})
+        });
+    } catch(err) {
+        console.error(err);
+    }
 });
 
 closeBtn.addEventListener('click', () => {
