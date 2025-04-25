@@ -38,7 +38,6 @@ async function deleteNote(id: string) {
 
 async function editNote(id: number) {
   toggleModal(true);
-  console.log("CHAMADO");
   noteId = id;
 
   const note = await fetch(`http://localhost:3001/note/notes/${id}`);
@@ -70,6 +69,7 @@ function toggleModal(state: boolean) {
   if (state) {
     modal.classList.remove("hidden");
     modal.classList.add("flex");
+    modal.focus();
   } else {
     modal.classList.add("hidden");
     modal.classList.remove("flex");
