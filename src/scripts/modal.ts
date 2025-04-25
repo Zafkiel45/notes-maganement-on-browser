@@ -134,14 +134,13 @@ createNoteBtn.addEventListener('click', async () => {
 	})
 });
 
-// ---------- Keyboard Actions for modals ---------- //
+// ---------- Actions for modals ---------- //
 window.addEventListener("load", () => {
-  const modals = document.querySelectorAll(
-    ".modals"
-  ) as NodeListOf<HTMLDivElement>;
+  const modals = document.querySelectorAll(".modals") as NodeListOf<HTMLDivElement>;
+	const modalContent = document.querySelectorAll('.modal-content') as NodeListOf<HTMLDivElement>;
+	// add key event to modal
   modals.forEach((modal) => {
     modal.setAttribute("tabindex", "-1");
-
     modal.addEventListener("keydown", (e) => {
       if (e.key.toLowerCase() === "escape") {
         modal.classList.remove("flex");
@@ -149,4 +148,15 @@ window.addEventListener("load", () => {
       }
     });
   });
+	// add click event to modal. When the overlay is clicked, the modal close
+	modals.forEach((modal, idx) => {
+
+		modal.addEventListener('click', (e) => {
+			toggleModal(false, modal);
+		});
+		
+		modalContent[idx].addEventListener('click', (e) => {
+			e.stopPropagation();
+		});
+	})
 });
