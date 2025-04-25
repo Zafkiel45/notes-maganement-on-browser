@@ -9,7 +9,7 @@ interface Props {
 const { folderArr } = Astro.props;
 ---
 
-<ul class="flex gap-3 h-full flex-wrap justify-start w-full overflow-y-auto">
+<ul class="flex gap-3 flex-wrap h-32 justify-start w-full overflow-y-auto">
     {folderArr.map((folder: folderObject) => {
         return (
           <li class="h-fit">
