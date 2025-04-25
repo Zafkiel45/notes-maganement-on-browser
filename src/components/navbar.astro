@@ -104,12 +104,3 @@ const folderArr = await folders.json();
   </Modal>
 </nav>
 
-<script>
-  const closeModalBtn = document.querySelector('#openModal') as HTMLButtonElement;
-  const modal = document.querySelector('#modal') as HTMLDivElement;
-
-  closeModalBtn.addEventListener('click', () => {
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-  });
-</script>
