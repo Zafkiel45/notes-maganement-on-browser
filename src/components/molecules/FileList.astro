@@ -2,7 +2,6 @@
 import type { FileList } from "../../pages/folders/[folder]/filesTypes.astro";
 import { DeleteNote } from "../../svg/DeleteFile.svg";
 import { EditNote } from "../../svg/EditNote.svg";
-import { FileIcon } from "../../svg/FileIcon";
 import IconFile from "../atoms/IconFile.astro";
 
 interface Props {
@@ -15,7 +14,7 @@ const { files } = Astro.props;
 
   files.map((item) => {
     return (
-      <li class="flex z-0 shrink justify-between gap-3 w-full rounded-lg border border-[#2e2e2e] shadow-sm py-2 px-4 bg-[#121212] hover:bg-[#242424] hover:border-[#505050] active:bg-[#2e2e2e] transition-colors">
+      <li data-id={item.id} class="flex z-0 shrink justify-between gap-3 w-full rounded-lg border border-[#2e2e2e] shadow-sm py-2 px-4 bg-[#121212] hover:bg-[#242424] hover:border-[#505050] active:bg-[#2e2e2e] transition-colors">
         <div class="flex gap-4 items-center">
           <IconFile/>
           <a href={`/docs/${item.id}/files`}>

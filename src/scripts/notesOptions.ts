@@ -29,12 +29,41 @@ window.addEventListener("load", () => {
   });
 });
 
+export function deleteNoteEvent(element: HTMLElement) {
+  element.addEventListener("click", () => {
+    const id = element.getAttribute("data-id");
+    if (typeof id !== "string") return;
+    deleteNote(id);
+  });
+};
+export function editNoteEvent(element: HTMLElement) {
+    element.addEventListener("click", () => {
+      const id = element.getAttribute("data-id");
+
+      if (typeof id === "undefined") {return;}
+      editNote(Number(id));
+    });
+};
+
 async function deleteNote(id: string) {
   await fetch(`http://localhost:3001/note/notes/${id}`, {
     method: "DELETE",
     mode: "cors",
   });
-}
+  // The snippet below creates a reative operation on list.
+  // Without this snippet of code, the data is updated on database, but 
+  // the client is not updated without refresh the whole page.
+  const fileList = document.querySelector('#fileList') as HTMLUListElement;
+  const fileArr = Array.from(fileList.children);
+  
+  for(let file of fileArr) {
+    const elementId: string | null = file.getAttribute('data-id');
+  
+    if(elementId === null) {continue}
+    else if(elementId !== id) {continue}
+    else {file.remove()};
+  };
+};
 
 async function editNote(id: number) {
   toggleModal(true);
