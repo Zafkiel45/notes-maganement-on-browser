@@ -49,15 +49,24 @@ createNoteBtn.addEventListener("click", async () => {
     const copyId = String(targetChildId + 1);
     const linkToEndpoint = copyOfTarget.querySelector('a') as HTMLAnchorElement;
     const copyName = linkToEndpoint.querySelector('div') as DivElement;
+    const copyEditSvg = copyOfTarget.querySelector('.edit-note') as SVGElement;
+    const copyDeleteSvg = copyOfTarget.querySelector('.delete-note') as SVGElement;
 
     copyOfTarget.removeAttribute('data-id');
     copyOfTarget.setAttribute('data-id', copyId);
 
+    copyEditSvg.removeAttribute('data-id');
+    copyEditSvg.setAttribute('data-id', copyId);
+    
+    copyDeleteSvg.removeAttribute('data-id');
+    copyDeleteSvg.setAttribute('data-id', copyId);
+
     linkToEndpoint.removeAttribute('href');
     linkToEndpoint.setAttribute('href', `/docs/${copyId}/files`); 
 
-    deleteNoteEvent(copyOfTarget);
-    editNoteEvent(copyOfTarget);
+
+    deleteNoteEvent(copyDeleteSvg);
+    editNoteEvent(copyEditSvg);
 
     copyName.textContent = noteName;
 

@@ -29,14 +29,14 @@ window.addEventListener("load", () => {
   });
 });
 
-export function deleteNoteEvent(element: HTMLElement) {
+export function deleteNoteEvent(element: HTMLElement | SVGElement) {
   element.addEventListener("click", () => {
     const id = element.getAttribute("data-id");
     if (typeof id !== "string") return;
     deleteNote(id);
   });
 };
-export function editNoteEvent(element: HTMLElement) {
+export function editNoteEvent(element: HTMLElement | SVGElement) {
     element.addEventListener("click", () => {
       const id = element.getAttribute("data-id");
 
