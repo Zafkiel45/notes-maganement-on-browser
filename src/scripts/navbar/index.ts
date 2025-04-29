@@ -4,6 +4,10 @@
 */ 
 import './modal/folderModal';
 import './modal/noteModal';
+
+import { attachClickEvents } from './modal/events/mouse.navbar';
+import { attachKeyEvents } from './modal/events/keyboard.navbar';
+
 import type { DivElement } from './types/htmlElements';
 
 // utility function to nav
@@ -25,3 +29,8 @@ export function removeClass(target: HTMLElement, ...targetClass: string[]) {
 export function addClass(target: HTMLElement, ...targetClass: string[]) {
   target.classList.add(...targetClass);
 };
+
+window.addEventListener("load", () => {
+  attachClickEvents();
+  attachKeyEvents();
+});
