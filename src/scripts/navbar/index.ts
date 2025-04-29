@@ -3,6 +3,7 @@
   to navbar, important imports, and exports.
 */ 
 import './modal/folderModal';
+import './modal/noteModal';
 import type { DivElement } from './types/htmlElements';
 
 // utility function to nav
