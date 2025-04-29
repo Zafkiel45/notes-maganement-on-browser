@@ -17,7 +17,6 @@ export interface FileList {
 const { folder } = Astro.params;
 
 const files = await fetch(`http://localhost:3001/note/${folder}`);
-console.log(files)
 const fileList: FileList[] = (await files.json()) as FileList[];
 ---
 
@@ -33,7 +32,7 @@ const fileList: FileList[] = (await files.json()) as FileList[];
     </h1>
   </div>
   <div>
-    <ul class="text-lg flex flex-wrap gap-2">
+    <ul id="fileList" class="text-lg flex flex-wrap gap-2">
       <FileList files={fileList} />
     </ul>
   </div>
