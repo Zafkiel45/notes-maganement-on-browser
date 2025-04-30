@@ -24,7 +24,7 @@ const content = await docsContent.text();
 <script>
   import { codeToHtml } from "shiki";
 
-  window.onload = async () => {
+  window.addEventListener('load', async () => {
     const preElements = document.querySelectorAll("pre");
 
     if (preElements.length === 0) return;
@@ -47,5 +47,5 @@ const content = await docsContent.text();
 
       preElement.replaceWith(...wrapper.childNodes);
     }
-  };
+  }) 
 </script>
