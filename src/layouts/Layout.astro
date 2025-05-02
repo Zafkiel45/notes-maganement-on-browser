@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import Navbar from "../components/navbar.astro";
 import '../styles/globals.css';
 ---
@@ -22,6 +23,7 @@ import '../styles/globals.css';
       </div>
     </div>
   </body>
+  <ClientRouter/>
 </html>
 
 <style>
@@ -32,3 +34,9 @@ import '../styles/globals.css';
     height: 100%;
   }
 </style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    console.log('astro event')
+  })
+</script>

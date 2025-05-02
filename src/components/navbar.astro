@@ -13,6 +13,7 @@ import MandatoryAdvice from "./atoms/MandatoryAdvice.astro";
 import ButtonWithSvg from "./atoms/ButtonWithSvg.astro";
 import ModalHeader from "./molecules/ModalHeader.astro";
 import TextEditor from './atoms/TextEditor.astro';
+import ButtonConfirm from "./molecules/ButtonConfirm.astro";
 
 const folders = await fetch("http://localhost:3001/folders");
 const folderArr = await folders.json();
@@ -31,7 +32,7 @@ const folderArr = await folders.json();
   </div>
 
   <NavSection section="📂  Pastas" />
-  <ul class="w-full flex flex-col gap-3">
+  <ul id="navbar-folders" class="w-full flex flex-col gap-3">
     <NavFolders folders={folderArr} />
   </ul>
 
@@ -102,6 +103,13 @@ const folderArr = await folders.json();
     </ButtonWithSvg>
     </div>
   </Modal>
+  <Modal id='editModal'>
+    <ModalHeader btnId="editClose" title="Editar Nota" />
+    <Label target="editInput">
+      Editor
+    </Label>
+    <TextEditor id="editInput" />
+    <ButtonConfirm id='editConfirm' />
+  </Modal>
 </nav>
-
 <script src="../scripts/navbar/index.ts"></script>

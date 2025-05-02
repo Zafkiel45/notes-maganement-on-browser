@@ -13,12 +13,12 @@ const { folders } = Astro.props;
 {
   folders.map((folder: folderObject) => {
     return (
-      <a href={`/folders/${folder.folder_id}/filesTypes`}>
+      <a href={`/folders/${folder.folder_id}/filesTypes`} data-history="push">
         <li class="flex w-full items-center group gap-1 hover:bg-blue-400/40 transition-colors active:bg-blue-300/40 cursor-pointer rounded-md py-1 px-2 truncate">
           <div>
             <Hash className="fill-gray-400 group-hover:fill-cyan-200 transition-colors" />
           </div>
-          <div>{folder.name}</div>
+          <div class="folder-name">{folder.name}</div>
         </li>
       </a>
     );

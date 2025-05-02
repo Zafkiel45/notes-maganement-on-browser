@@ -36,14 +36,5 @@ const fileList: FileList[] = (await files.json()) as FileList[];
       <FileList files={fileList} />
     </ul>
   </div>
-  <Modal id='editModal'>
-    <ModalHeader btnId="editClose" title="Editar Nota" />
-    <Label target="editInput">
-      Editor
-    </Label>
-    <TextEditor id="editInput" />
-    <ButtonConfirm id='editConfirm' />
-  </Modal>
 </Layout>
 
-<script src="../../../scripts/notesOptions.ts" ></script>
