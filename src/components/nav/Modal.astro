@@ -1,13 +1,15 @@
 ---
 import type { HTMLAttributes } from 'astro/types'
 
-interface Props extends HTMLAttributes<'div'> {};
+interface Props extends HTMLAttributes<'div'> {
+  axisYisCentralized?: boolean;
+};
 
-const { ...attr } = Astro.props;
+const { axisYisCentralized, ...attr } = Astro.props;
 ---
 
-<div {...attr} class={`bg-black/90 z-40 w-screen h-screen hidden top-0 left-0 absolute justify-center items-center modals`}>
-  <div class="bg-[#080808] z-50 lg:w-[70vw] lg:max-h-[80vh] lg:min-h-fit overflow-y-auto border border-[#5C5C5C] rounded-xl shadow-md flex flex-col gap-6 px-8 py-5 modal-content">
+<div {...attr} class={`bg-black/90 z-40 w-screen py-10 lg:overflow-y-auto h-screen hidden top-0 left-0 absolute justify-center ${axisYisCentralized ? 'items-center':''} modals`}>
+  <div class="bg-[#12111a] border-[#2E2E42] z-50 lg:w-[70vw] lg:h-fit border rounded-xl shadow-md flex flex-col gap-6 px-8 py-5 modal-content">
     <slot/>
   </div>
 </div>
