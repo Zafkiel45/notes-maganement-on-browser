@@ -9,7 +9,7 @@ interface Props {
 const { folderArr } = Astro.props;
 ---
 
-<ul class="flex gap-3 flex-wrap h-32 justify-start w-full overflow-y-auto">
+<ul class="flex gap-3 flex-wrap h-fit justify-start w-full">
     {folderArr.map((folder: folderObject) => {
         return (
           <li class="h-fit">
@@ -22,7 +22,7 @@ const { folderArr } = Astro.props;
             />
             <Label 
               target={folder.name}
-              class="peer-checked:text-blue-400 rounded-md"
+              class="peer-checked:text-blue-400 rounded-md cursor-pointer"
             >
               📂 {folder.name}
             </Label>
