@@ -3,31 +3,29 @@ import type {
   DivElement,
   BtnElement,
   InputElement,
+  UListElement,
 } from "../types/htmlElements";
-import { addClass, removeClass, toggleModal } from "../utils/utlity.navbar";
-import { createFolderNode } from "../folders/folderList";
-
-// related to generics  elements
-const modalError = document.querySelector("#modalError") as DivElement;
-const modalSuccess = document.querySelector("#modalSuccess") as DivElement;
-const modalSuccessMessage = document.querySelector("#modalSuccessMessage") as DivElement;
-const modalErrorMessage = document.querySelector("#modalErrorMessage") as DivElement;
-// related modal itself
-const folderModal = document.querySelector("#folderModal") as DivElement;
-const folderModalCloseBtn = document.querySelector("#closeFolderModal") as BtnElement;
-const folderNameInput = document.querySelector("#folderNameInput") as InputElement;
-const folderCreateBtn = document.querySelector("#createFolderBtn") as BtnElement;
-const folderOpenModalBtn = document.querySelector("#openFolderModal") as BtnElement;
+import { toggleModal } from "../utils/utlity.navbar";
 
 document.addEventListener("astro:page-load", () => {
+  const folderNameInput = document.querySelector(
+    "#folderNameInput"
+  ) as InputElement;
+  const folderCreateBtn = document.querySelector(
+    "#createFolderBtn"
+  ) as BtnElement;
   const folderModal = document.querySelector("#folderModal") as DivElement;
-  const folderModalCloseBtn = document.querySelector("#closeFolderModal") as BtnElement;
-  const folderOpenModalBtn = document.querySelector("#openFolderModal") as BtnElement;
+  const folderModalCloseBtn = document.querySelector(
+    "#closeFolderModal"
+  ) as BtnElement;
+  const folderOpenModalBtn = document.querySelector(
+    "#openFolderModal"
+  ) as BtnElement;
 
   folderOpenModalBtn.addEventListener("click", () => {
     toggleModal(true, folderModal);
   });
-  
+
   folderModalCloseBtn.addEventListener("click", () => {
     toggleModal(false, folderModal);
   });
@@ -35,38 +33,65 @@ document.addEventListener("astro:page-load", () => {
   folderCreateBtn.addEventListener("click", async () => {
     await createFolder();
   });
-});
 
-folderOpenModalBtn.addEventListener("click", () => {
-  toggleModal(true, folderModal);
-});
+  const createFolder = async () => {
+    try {
+      const folderName = capitalizeFirstLetter(folderNameInput.value);
 
-folderModalCloseBtn.addEventListener("click", () => {
-  toggleModal(false, folderModal);
-});
+      await fetch("http://localhost:3001/folders", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ folderName: folderName }),
+      }).then((answer) => {
+        if (answer.status === 409) {
+          return;
+        }
+        createFolderNode(folderName);
+      });
 
-const createFolder = async () => {
-  try {
-    const folderName = capitalizeFirstLetter(folderNameInput.value);
+      return;
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-    await fetch("http://localhost:3001/folders", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ folderName: folderName }),
-    }).then((answer) => {
-      if (answer.status === 409) {return} 
-      createFolderNode(folderName); 
-    });
+  folderCreateBtn.addEventListener("click", async () => {
+    await createFolder();
+  });
 
-    return;
-  } catch (err) {
-    console.error(err);
+  const folderList = document.querySelector("#navbar-folders") as UListElement;
+
+  function createFolderNode(name: string) {
+    try {
+      const lastChild = folderList.lastElementChild;
+
+      if (typeof lastChild === "undefined" || lastChild === null) {
+        window.location.reload();
+        return;
+      }
+
+      const lastChildCopy = lastChild.cloneNode(true) as HTMLElement;
+      const currentHref = lastChildCopy.getAttribute("href")?.split("/");
+      const folderName = lastChildCopy.querySelector(".folder-name") as DivElement;
+
+      if(!currentHref) {
+        window.alert('BAD ERROR!')
+        return;
+      };
+
+      const currentFolderId = parseInt(currentHref[2]) + 1
+      console.log(currentFolderId)
+      lastChildCopy.removeAttribute("href");
+      lastChildCopy.setAttribute("href", `/folders/${currentFolderId}/filesTypes`);
+      folderName.textContent = name;
+
+      folderList.appendChild(lastChildCopy);
+      return;
+    } catch (err) {
+      console.error(err);
+    }
   }
-};
-
-folderCreateBtn.addEventListener("click", async () => {
-  await createFolder();
 });
