@@ -3,15 +3,11 @@ import type { HTMLAttributes } from "astro/types";
 import { Plus } from "../../svg/Plus";
 import ButtonWithSvg from "../atoms/ButtonWithSvg.astro";
 
-interface Props extends HTMLAttributes<'button'> {};
-const { ...attr } = Astro.props;
-
 ---
 <div class="lg:w-24">
     <ButtonWithSvg 
-        {...attr}
         content="Criar" 
-        class="bg-green-600 confirm-btn rounded-md w-full shadow-sm px-2 py-1 flex gap-2 justify-start cursor-pointer"
+        class="btn-edit-confirm bg-green-600 confirm-btn rounded-md w-full shadow-sm px-2 py-1 flex gap-2 justify-start cursor-pointer"
     >
         <Plus/>
     </ButtonWithSvg>
