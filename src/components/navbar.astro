@@ -14,6 +14,8 @@ import ButtonWithSvg from "./atoms/ButtonWithSvg.astro";
 import ModalHeader from "./molecules/ModalHeader.astro";
 import TextEditor from './atoms/TextEditor.astro';
 import ButtonConfirm from "./molecules/ButtonConfirm.astro";
+import ErrorAdvice from "./atoms/ErrorAdvice.astro";
+import SuccessAdvice from "./atoms/SuccessAdvice.astro";
 
 const folders = await fetch("http://localhost:3001/folders");
 const folderArr = await folders.json();
@@ -109,6 +111,8 @@ const folderArr = await folders.json();
       Editor
     </Label>
     <TextEditor id="editInput" />
+    <ErrorAdvice/>
+    <SuccessAdvice/>
     <ButtonConfirm id='editConfirm' />
   </Modal>
 </nav>
